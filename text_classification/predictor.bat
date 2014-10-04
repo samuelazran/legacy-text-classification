@@ -1,0 +1,1 @@
+python predictor.py --language en --domain bitcoin --source twitter --input "bitcoin is going up and people are buying"

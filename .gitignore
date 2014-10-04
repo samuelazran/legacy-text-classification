@@ -1,0 +1,34 @@
+# Compiled python modules.
+*.pyc
+
+# Python egg metadata, regenerated from source files by setuptools.
+/*.egg-info
+/*.egg
+
+#pickled models
+*.pickle
+text_classification/models/
+
+#stdout output text files
+text_classification/stdout/
+
+#data text files
+text_classification/data/
+
+# any text file
+*.txt
+
+# any log file
+*.log
+
+# any rar file
+*.rar
+
+# any zip file
+*.zip
+
+# any json file
+*.json
+
+# playground tests and dirty codes
+playground.*
