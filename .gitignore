@@ -16,7 +16,7 @@
 /text_classification/stdout/
 
 #data text files
-/text_classification//data/
+/text_classification/data/
 
 # any text file
 *.txt
