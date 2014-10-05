@@ -41,7 +41,7 @@ if __name__ == "__main__":
     
     model_id = opts.model_id
     assert isinstance(model_id, str), "must specify model_id"
-    model = models.Model({'model_id': model_id})
+    model = models.get_model(models.BaseModel(model_id))
 
     classifier_name = None
     if not fullgrid: classifier_name=model.classifier_name
@@ -54,7 +54,9 @@ if __name__ == "__main__":
         pipeline_parameters=None
     else:
         pipeline_parameters=model.pipeline_parameters
-    
+
+    print(model.pipeline_parameters)
+
     index = -1
     for name, obj in classifiers.iteritems():
         index +=1
@@ -66,8 +68,8 @@ if __name__ == "__main__":
             if fullgrid: 
                 classifier_grid_parameters=obj['grid_parameters'].copy()
                 print("classifier_grid_parameters",classifier_grid_parameters)
-            pipeline, parameters = pipeline.create(classifier=obj["classifier"],parameters=pipeline_parameters,classifier_grid_parameters=classifier_grid_parameters)
+            classification_pipeline, parameters = pipeline.create(classifier=obj["classifier"],parameters=pipeline_parameters,classifier_grid_parameters=classifier_grid_parameters)
             print("parameters:")
             print(parameters)
             print("")
-            gridsearch.start(pipeline, parameters, rawdata[:550], classes[:550])
+            gridsearch.start(classification_pipeline, parameters, rawdata, classes)

@@ -5,15 +5,18 @@
 /*.egg-info
 /*.egg
 
+/dist/
+/build/
+
 #pickled models
 *.pickle
-text_classification/models/
+/text_classification/models/
 
 #stdout output text files
-text_classification/stdout/
+/text_classification/stdout/
 
 #data text files
-text_classification/data/
+/text_classification//data/
 
 # any text file
 *.txt

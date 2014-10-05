@@ -1,1 +1,1 @@
-python tester.py --model_id en_room_facebook --stdout test
+python tester.py --model_id en_bitcoin_twitter --stdout tester

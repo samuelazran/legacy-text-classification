@@ -102,26 +102,27 @@ saved_models = {
         'bitcoin': {
             'twitter': Model(
                 model_properties = { 'language': 'en', 'domain': 'bitcoin', 'source': 'twitter' },
-                classifier_name = 'BernoulliNB',
+                classifier_name = 'SGDClassifier',
                 pipeline_parameters = {
-                    "clf__alpha": 0.01,
-                    "clf__binarize": 0,
+                    "clf__alpha": 0.0001,
+                    "clf__n_iter": 100,
+                    "clf__penalty": 'l2',
                     "select__percentile": 100,
-                    'vect__token_pattern' : u'(?u)\\b\\w\\w+\\b',
                     "select__score_func": chi2,
                     "tfidf__norm": u'l2',
-                    "tfidf__smooth_idf": True,
-                    "tfidf__sublinear_tf": True,
+                    "tfidf__smooth_idf": False,
+                    "tfidf__sublinear_tf": False,
                     "tfidf__use_idf": True,
                     "vect__encoding": u'utf-8',
                     "vect__lowercase": False,
-                    "vect__max_df": 1.0,
+                    "vect__max_df":0.5,
                     "vect__min_df": 1,
-                    "vect__ngram_range": (1, 2),
+                    "vect__ngram_range": (1, 5),
                     "vect__preprocessor": normalizer.normalize,
-                    "vect__stop_words": None
+                    "vect__stop_words": None,
+                    'vect__token_pattern' : u'(?u)\\b\\w\\w+\\b'
                 },
-                train_details=TrainDetails(score=0.672727273, items_amount=1075)
+                train_details=TrainDetails(score=0.680000000, items_amount=1075)
             ),
             'reddit': Model(
                 model_properties = { 'language': 'en', 'domain': 'bitcoin', 'source': 'reddit' },
