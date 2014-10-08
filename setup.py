@@ -16,7 +16,8 @@ setup(name='text-classification',
     entry_points = {
         'console_scripts': ['predict=text_classification.command_line:predict'],
     },
-    packages=['text_classification'],
+    packages=['text_classification','text_classification.lib.langid'],
+	package_data={'text_classification': ['*.bat']},
 	install_requires=[
         'scikit-learn','dill'
     ],

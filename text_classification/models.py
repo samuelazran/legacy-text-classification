@@ -1,5 +1,7 @@
 #module for Model class, and saved models configurations
 
+import settings, pickler
+
 # base structure of model class
 class BaseModel(object):
     def __init__(self, model_id=None, language = "general", domain = "general", source = "general"):
@@ -80,7 +82,7 @@ class Model(BaseModel):
         loaded_model = unpickle_model(self)
         if not loaded_model:
             raise Exception("can't find saved model with the given model properties: {0:s}".format(str({'language':language, 'domain': domain, 'source': source})))
-        assert isinstance(loaded_model, Model)
+        #assert isinstance(loaded_model, Model)
         self.pipeline = loaded_model.pipeline
         self.pipeline_parameters = loaded_model.pipeline_parameters
         self.classes_names = loaded_model.classes_names
@@ -105,19 +107,20 @@ saved_models = {
                 classifier_name = 'SGDClassifier',
                 pipeline_parameters = {
                     "clf__alpha": 0.0001,
-                    "clf__n_iter": 100,
+                    "clf__n_iter": 50,
                     "clf__penalty": 'l2',
+                    "clf__loss": 'hinge',
                     "select__percentile": 100,
                     "select__score_func": chi2,
                     "tfidf__norm": u'l2',
-                    "tfidf__smooth_idf": False,
-                    "tfidf__sublinear_tf": False,
+                    "tfidf__smooth_idf": True,
+                    "tfidf__sublinear_tf": True,
                     "tfidf__use_idf": True,
                     "vect__encoding": u'utf-8',
                     "vect__lowercase": False,
                     "vect__max_df":0.5,
                     "vect__min_df": 1,
-                    "vect__ngram_range": (1, 5),
+                    "vect__ngram_range": (1, 2),
                     "vect__preprocessor": normalizer.normalize,
                     "vect__stop_words": None,
                     'vect__token_pattern' : u'(?u)\\b\\w\\w+\\b'
@@ -209,22 +212,15 @@ def get_model(base_model, create_if_not_saved=False):
     return model
 
 
-import pickle, dill
-import settings
-
 def pickle_model(model):
     path = settings.models_path
-    f = open(path + model.id + ".pickle",'wb')
     print("pickling model to: " + path + model.id + ".pickle")
-    pickle.dump(model,f)
-    f.close()
+    pickler.dump(path + model.id + ".pickle", model)
     print("done")
     return True
 
 def unpickle_model(model):
     path = settings.models_path
-    f = open(path + model.id + ".pickle")
     print("loading model from: " + path + model.id + ".pickle")
-    loaded_model = pickle.load(f)
-    f.close()
+    loaded_model = pickler.load(path + model.id + ".pickle")
     return loaded_model

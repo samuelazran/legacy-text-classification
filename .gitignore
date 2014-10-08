@@ -8,15 +8,11 @@
 /dist/
 /build/
 
-#pickled models
+#any pickled models
 *.pickle
-/text_classification/models/
-
-#stdout output text files
-/text_classification/stdout/
 
 #data text files
-/text_classification/data/
+/text_classification/data/corpora/raw/*
 
 # any text file
 *.txt

@@ -120,5 +120,8 @@ if __name__ == "__main__":
         print(model.pipeline.score([predict],prediction))
         if hasattr(model.pipeline,'predict_proba'):
             print("proba:")
-            prediction = model.pipeline.predict_proba([predict])[0]
-            print(prediction)
+            try:
+                prediction = model.pipeline.predict_proba([predict])[0]
+                print(prediction)
+            except NotImplementedError as err:
+                print (err.args)
