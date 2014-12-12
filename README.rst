@@ -23,12 +23,12 @@ STEP BY STEP HOW TO:
         
 		In the root folder ("text-classification-master") open command line window and type: "python setup.py install"
         
-		The package will be installed into your python package folder (e.g c:\python27-32b\lib\site-packages\text_classification-0.1-py2.7.egg\)
+		The package will be installed into your python package folder (e.g c:/python27-32b/lib/site-packages/text_classification-0.1-py2.7.egg/)
         
-		Navigate to the package library to use its command line interface:		"cd C:\Python27-32b\Lib\site-packages\text_classification-0.1-py2.7.egg\text_classification"
+		Navigate to the package library to use its command line interface:		"cd C:/Python27-32b/Lib/site-packages/text_classification-0.1-py2.7.egg/text_classification"
 
     2. Data
-        Put the data you want to classify into the data folder (e.g C:\Python27-32b\Lib\site-packages\text_classification-0.1-py2.7.egg\text_classification\data\)
+        Put the data you want to classify into the data folder (e.g C:/Python27-32b/Lib/site-packages/text_classification-0.1-py2.7.egg/text_classification/data/)
         
 		Inside the "data" folder you should create hierarchical structure of folders that represents your dataset. for example for data set of tweets about bitcoin in english create:
             .../data/corpora/raw/en/bitcoin/twitter/
@@ -47,7 +47,7 @@ STEP BY STEP HOW TO:
 
         Navigate to the package library root folder to use its command line interface:
             
-			cd C:\Python27-32b\Lib\site-packages\text_classification-0.1-py2.7.egg\text_classification
+			cd C:/Python27-32b/Lib/site-packages/text_classification-0.1-py2.7.egg/text_classification
             
 			Create the folders (if not exist yet): "stdout" and "models" in the root directory to store the stdout logs and the saved models.
         
@@ -69,10 +69,10 @@ STEP BY STEP HOW TO:
 
             ('classifier_grid_parameters', {'binarize': [0, 0.01, 0.001], 'alpha': [0.01]})
             parameters:
-            {'vect__ngram_range': [(1, 2), (1, 3), (1, 4), (1, 5)], 'tfidf__smooth_idf': [True, False], 'vect__stop_words': [u'english', None], 'tfidf__sublinear_tf': [True, False], 'vect__max_df': [0.25, 0.5, 0.75, 1.0], 'select__percentile': [10, 16, 20, 100], 'vect__lowercase': [False], 'clf__binarize': [0, 0.01, 0.001], 'select__score_func': [<function chi2 at 0x089EE8F0>], 'tfidf__use_idf': [True], 'vect__min_df': [1, 2], 'tfidf__norm': [u'l2'], 'vect__encoding': [u'utf-8'], 'vect__token_pattern': [u'(?u)\\b\\w\\w+\\b', u'\\b\\w+\\b'], 'clf__alpha': [0.01], 'vect__preprocessor': [<bound method Normalizer.normalize of <normalizer.Normalizer instance at 0x08A86C10>>]}
+            {'vect__ngram_range': [(1, 2), (1, 3), (1, 4), (1, 5)], 'tfidf__smooth_idf': [True, False], 'vect__stop_words': [u'english', None], 'tfidf__sublinear_tf': [True, False], 'vect__max_df': [0.25, 0.5, 0.75, 1.0], 'select__percentile': [10, 16, 20, 100], 'vect__lowercase': [False], 'clf__binarize': [0, 0.01, 0.001], 'select__score_func': [<function chi2 at 0x089EE8F0>], 'tfidf__use_idf': [True], 'vect__min_df': [1, 2], 'tfidf__norm': [u'l2'], 'vect__encoding': [u'utf-8'], 'vect__token_pattern': [u'(?u)//b//w//w+//b', u'//b//w+//b'], 'clf__alpha': [0.01], 'vect__preprocessor': [<bound method Normalizer.normalize of <normalizer.Normalizer instance at 0x08A86C10>>]}
 
             Fitting 3 folds for each of 6144 candidates, totalling 18432 fits
-            C:\Python27-32b\lib\site-packages\sklearn\feature_selection\univariate_selection.py:319: UserWarning: Duplicate scores. Result may depend on feature ordering.There are probably duplicate features, or you used a classification score for a regression task.
+            C:/Python27-32b/lib/site-packages/sklearn/feature_selection/univariate_selection.py:319: UserWarning: Duplicate scores. Result may depend on feature ordering.There are probably duplicate features, or you used a classification score for a regression task.
               warn("Duplicate scores. Result may depend on feature ordering."
             [Parallel(n_jobs=1)]: Done   1 jobs       | elapsed:    0.0s
             [Parallel(n_jobs=1)]: Done  50 jobs       | elapsed:    1.1s
@@ -113,7 +113,7 @@ STEP BY STEP HOW TO:
                 vect__ngram_range: (1, 2)
                 vect__preprocessor: <bound method Normalizer.normalize of <normalizer.Normalizer instance at 0x08A86C10>>
                 vect__stop_words: u'english'
-                vect__token_pattern: u'(?u)\\b\\w\\w+\\b'
+                vect__token_pattern: u'(?u)//b//w//w+//b'
 
         The first part, is the classifier algorithm name.
         
