@@ -27,8 +27,10 @@ STEP BY STEP HOW TO:
         
 		Navigate to the package library to use its command line interface:		"cd C:/Python27-32b/Lib/site-packages/text_classification-0.1-py2.7.egg/text_classification"
 
+
     2. Data
-        Put the data you want to classify into the data folder (e.g C:/Python27-32b/Lib/site-packages/text_classification-0.1-py2.7.egg/text_classification/data/)
+    
+		Put the data you want to classify into the data folder (e.g C:/Python27-32b/Lib/site-packages/text_classification-0.1-py2.7.egg/text_classification/data/)
         
 		Inside the "data" folder you should create hierarchical structure of folders that represents your dataset. for example for data set of tweets about bitcoin in english create:
             .../data/corpora/raw/en/bitcoin/twitter/
@@ -43,8 +45,9 @@ STEP BY STEP HOW TO:
             In each folder put text files with text relating to the domain, each file includs the text content in raw plain text UTF-8 files.
             To get good results put at least 100 text files in each folder.
 
-    3. Tester - examine classification algorithms on the data set with range of parameters to see who can guess the correct class most of the time.
-
+			
+    3. Tester
+	
         Navigate to the package library root folder to use its command line interface:
             
 			cd C:/Python27-32b/Lib/site-packages/text_classification-0.1-py2.7.egg/text_classification
@@ -117,13 +120,13 @@ STEP BY STEP HOW TO:
 
         The first part, is the classifier algorithm name.
         
-		The second part, is the range of parameters the system will try the classifier with.
+        The second part, is the range of parameters the system will try the classifier with.
         
-		The third part, is the log of the testing jobs (this part might take some time depending on the computing resources, the classifier is being tested with any combination of parameters on the dataset).
+        The third part, is the log of the testing jobs (this part might take some time depending on the computing resources, the classifier is being tested with any combination of parameters on the dataset).
         
-		The forth part, is the best parameters for the classifier, along with the score of the tests the computer did with this parameters.
+        The forth part, is the best parameters for the classifier, along with the score of the tests the computer did with this parameters.
         
-		You should look over the results of the all classifiers and pick the the one with the best score.
+        You should look over the results of the all classifiers and pick the the one with the best score.
 
 The package is being developed in my spare time. And I'll try maintain it and update the docs as much as I can.
 If you'd like to use or improve it, you are more than welcome to contact me at: samuel azran (in one word) at gmail.
