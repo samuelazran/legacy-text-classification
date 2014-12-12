@@ -41,7 +41,7 @@ if __name__ == "__main__":
     
     model_id = opts.model_id
     assert isinstance(model_id, str), "must specify model_id"
-    model = models.get_model(models.BaseModel(model_id))
+    model = models.get_model(models.BaseModel(model_id), fullgrid)
 
     classifier_name = None
     if not fullgrid: classifier_name=model.classifier_name

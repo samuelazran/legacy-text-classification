@@ -5,8 +5,10 @@
 /*.egg-info
 /*.egg
 
-/dist/
-/build/
+
+/build/lib/text_classification/models/*
+/build/lib/text_classification/stdout/*
+/build/lib/text_classification/data/corpora/raw/*
 
 #any pickled models
 *.pickle

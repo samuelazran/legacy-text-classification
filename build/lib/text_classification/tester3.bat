@@ -1,0 +1,1 @@
+python tester.py --model_id en_bitcoin_twitter --stdout test3 --fullgrid --start 7 --end 10
