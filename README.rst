@@ -16,37 +16,54 @@ STEP BY STEP HOW TO:
     1. Install
 
         First of all - as this package uses scikit-learn you should install it before, and read the docs: http://scikit-learn.org/stable/
-        After you understand how this package tools works for classification problems you can go ahead and use "text-classification".
-        Download the zip or "git clone https://github.com/samuelazran/text-classification.git" to an empty folder.
-        In the root folder ("text-classification-master") open command line window and type: "python setup.py install"
-        The package will be installed into your python package folder (e.g c:\python27-32b\lib\site-packages\text_classification-0.1-py2.7.egg\)
-        Navigate to the package library to use its command line interface: "cd C:\Python27-32b\Lib\site-packages\text_classification-0.1-py2.7.egg\text_classification"
+
+		After you understand how this package tools works for classification problems you can go ahead and use "text-classification".
+        
+		Download the zip or "git clone https://github.com/samuelazran/text-classification.git" to an empty folder.
+        
+		In the root folder ("text-classification-master") open command line window and type: "python setup.py install"
+        
+		The package will be installed into your python package folder (e.g c:\python27-32b\lib\site-packages\text_classification-0.1-py2.7.egg\)
+        
+		Navigate to the package library to use its command line interface:		"cd C:\Python27-32b\Lib\site-packages\text_classification-0.1-py2.7.egg\text_classification"
 
     2. Data
         Put the data you want to classify into the data folder (e.g C:\Python27-32b\Lib\site-packages\text_classification-0.1-py2.7.egg\text_classification\data\)
-        Inside the "data" folder you should create hierarchical structure of folders that represents your dataset. for example for data set of tweets about bitcoin in english create:
+        
+		Inside the "data" folder you should create hierarchical structure of folders that represents your dataset. for example for data set of tweets about bitcoin in english create:
             .../data/corpora/raw/en/bitcoin/twitter/
-            The pattern is: .../<data folder>/corpora/raw/<language>/<domain>/<source>/
+            
+			The pattern is: .../<data folder>/corpora/raw/<language>/<domain>/<source>/
             Inside the source folder you should create the classes folders. for example, for sentiment classification create folders by the names:
             0_informative
             -1_negative
             1_positive
-            The class folder name pattern is: <id number>_<class name> (the id number could be any positive or negative number, in this case -1 represent the id of the class negative, this number could be used later instead of the class name)
+            
+			The class folder name pattern is: <id number>_<class name> (the id number could be any positive or negative number, in this case -1 represent the id of the class negative, this number could be used later instead of the class name)
             In each folder put text files with text relating to the domain, each file includs the text content in raw plain text UTF-8 files.
             To get good results put at least 100 text files in each folder.
 
     3. Tester - examine classification algorithms on the data set with range of parameters to see who can guess the correct class most of the time.
 
         Navigate to the package library root folder to use its command line interface:
-            cd C:\Python27-32b\Lib\site-packages\text_classification-0.1-py2.7.egg\text_classification
-            Create the folders (if not exist yet): "stdout" and "models" in the root directory to store the stdout logs and the saved models.
-        Run the tester module from the command line:
-            python tester.py --model_id en_bitcoin_twitter --stdout test1 --fullgrid --start 1 --end 10
-            This command will execute full grid search (try any possible parameter for the classifiers) and will test in turn each classifier on the data.
-            The --model_id parameters is an id that represent the folder where the data is stored.
-            The pattern here is: <language code name>_<domain>_<source> (e.g: en_bitcoin_twitter).
-            The --stdout parameter is a name for the file where the tester output will go to.
-        After some time you'll start seeing log similar to this:
+            
+			cd C:\Python27-32b\Lib\site-packages\text_classification-0.1-py2.7.egg\text_classification
+            
+			Create the folders (if not exist yet): "stdout" and "models" in the root directory to store the stdout logs and the saved models.
+        
+		Run the tester module from the command line:
+            
+			python tester.py --model_id en_bitcoin_twitter --stdout test1 --fullgrid --start 1 --end 10
+            
+			This command will execute full grid search (try any possible parameter for the classifiers) and will test in turn each classifier on the data.
+            
+			The --model_id parameters is an id that represent the folder where the data is stored.
+            
+			The pattern here is: <language code name>_<domain>_<source> (e.g: en_bitcoin_twitter).
+            
+			The --stdout parameter is a name for the file where the tester output will go to.
+        
+		After some time you'll start seeing log similar to this:
 
             classifier BernoulliNB:
 
@@ -99,10 +116,14 @@ STEP BY STEP HOW TO:
                 vect__token_pattern: u'(?u)\\b\\w\\w+\\b'
 
         The first part, is the classifier algorithm name.
-        The second part, is the range of parameters the system will try the classifier with.
-        The third part, is the log of the testing jobs (this part might take some time depending on the computing resources, the classifier is being tested with any combination of parameters on the dataset).
-        The forth part, is the best parameters for the classifier, along with the score of the tests the computer did with this parameters.
-        You should look over the results of the all classifiers and pick the the one with the best score.
+        
+		The second part, is the range of parameters the system will try the classifier with.
+        
+		The third part, is the log of the testing jobs (this part might take some time depending on the computing resources, the classifier is being tested with any combination of parameters on the dataset).
+        
+		The forth part, is the best parameters for the classifier, along with the score of the tests the computer did with this parameters.
+        
+		You should look over the results of the all classifiers and pick the the one with the best score.
 
-the package is being developed in my spare time. And I'll try maintain it and update the docs as much as I can.
+The package is being developed in my spare time. And I'll try maintain it and update the docs as much as I can.
 If you'd like to use or improve it, you are more than welcome to contact me at: samuel azran (in one word) at gmail.
