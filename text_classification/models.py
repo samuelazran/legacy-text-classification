@@ -2,33 +2,36 @@
 
 import settings, pickler
 
+
 # base structure of model class
 class BaseModel(object):
-    def __init__(self, model_id=None, language = "general", domain = "general", source = "general"):
+    def __init__(self, model_id=None, language = "general", domain = "general", source = "general", type = "general"):
         """
         base structure of model class
         :rtype : BaseModel(object)
         """
 
         # model basic properties
-        self.__language = language
-        self.__domain = domain
-        self.__source = source
+        self.__language = language      # e.g en or nl...
+        self.__domain = domain          # e.g bitcoin or residence or room...
+        self.__source = source          # e.g facebook or twitter...
+        self.__type = type              # e.g sentiment or pos or ner...
         if model_id: self.set_id(model_id)
 
     @property
     def path(self):
-        return self.__language + "/" + self.__domain + "/" + self.__source + ""
+        return self.__language + "/" + self.__domain + "/" + self.__source + "/" + self.__type + ""
 
     def get_id(self):
-        return self.__language + "_" + self.__domain + "_" + self.__source + ""
+        return self.__language + "_" + self.__domain + "_" + self.__source + "_" + self.__type + ""
 
     def set_id(self, model_id):
         model_path = model_id.split('_')
-        if len(model_path) != 3: raise Exception("model_id must be string of 3 items seperated by _")
+        if len(model_path) != 4: raise Exception("model_id must be string of 4 items separated by _")
         self.language = model_path[0]
         self.domain = model_path[1]
         self.source = model_path[2]
+        self.type = model_path[3]
 
     def get_property(self, property_name):
         return getattr(self, "__" + property_name)
@@ -53,6 +56,13 @@ class BaseModel(object):
     @source.setter
     def source(self, value):
         self.__source = value
+
+    @property
+    def type(self):
+        return self.__type
+    @type.setter
+    def type(self, value):
+        self.__type = value
 
     @property
     def id(self):
@@ -93,122 +103,15 @@ class Model(BaseModel):
     def save(self):
         return pickle_model(self)
 
-from sklearn.feature_selection import SelectPercentile, chi2
-from normalizer import Normalizer
-
-normalizer = Normalizer()
-
-#language/domain/source:model
-saved_models = {
-    'en': {
-        'bitcoin': {
-            'twitter': Model(
-                model_properties = { 'language': 'en', 'domain': 'bitcoin', 'source': 'twitter' },
-                classifier_name = 'SGDClassifier',
-                pipeline_parameters = {
-					'clf__alpha': 0.0001,
-					'clf__loss': 'epsilon_insensitive',
-					'clf__n_iter': 25,
-					'clf__penalty': 'l2',
-					'select__percentile': 100,
-					'select__score_func': chi2,
-					'tfidf__norm': u'l2',
-					'tfidf__smooth_idf': True,
-					'tfidf__sublinear_tf': True,
-					'tfidf__use_idf': True,
-					'vect__encoding': u'utf-8',
-					'vect__lowercase': False,
-					'vect__max_df': 0.25,
-					'vect__min_df': 1,
-					'vect__ngram_range': (1, 2),
-					'vect__preprocessor': normalizer.normalize,
-					'vect__stop_words': None,
-					'vect__token_pattern': u'(?u)\\b\\w\\w+\\b'
-                },
-                train_details=TrainDetails(score=0.722693831, items_amount=1767)
-            ),
-            'reddit': Model(
-                model_properties = { 'language': 'en', 'domain': 'bitcoin', 'source': 'reddit' },
-                classifier_name = 'MultinomialNB',
-                pipeline_parameters = {
-                    "clf__alpha": 0.01,
-                    "select__percentile": 100,
-                    'vect__token_pattern' : u'(?u)\\b\\w\\w+\\b',
-                    "select__score_func": chi2,
-                    "tfidf__norm": u'l2',
-                    "tfidf__smooth_idf": True,
-                    "tfidf__sublinear_tf": True,
-                    "tfidf__use_idf": True,
-                    "vect__encoding": u'utf-8',
-                    "vect__lowercase": False,
-                    "vect__max_df": 0.25,
-                    "vect__min_df": 1,
-                    "vect__ngram_range": (1, 3),
-                    "vect__preprocessor": normalizer.normalize,
-                    "vect__stop_words": None
-                },
-                train_details=TrainDetails(items_amount=100)
-            )
-        },
-        'room':{
-            'facebook': Model(
-                model_properties = { 'language': 'en', 'domain': 'room', 'source': 'facebook' },
-                classifier_name = 'Perceptron',
-                pipeline_parameters = {
-                    "clf__n_iter": 10,
-                    "select__percentile": 16,
-                    'vect__token_pattern' : u'(?u)\\b\\w\\w+\\b',# u'\\b\\w+\\b',
-                    "select__score_func": chi2,
-                    "tfidf__norm": u'l2',
-                    "tfidf__smooth_idf": True,
-                    "tfidf__sublinear_tf": True,
-                    "tfidf__use_idf": True,
-                    "vect__encoding": u'utf-8',
-                    "vect__lowercase": False,
-                    "vect__max_df": 0.75,
-                    "vect__min_df": 1,
-                    "vect__ngram_range": (1, 4),
-                    "vect__preprocessor": normalizer.normalize,
-                    "vect__stop_words": None
-                }
-            )
-        },
-    },
-    'nl': {
-        'room': {
-            'facebook':  Model(
-                model_properties = { 'language': 'nl', 'domain': 'room', 'source': 'facebook' },
-                classifier_name = 'Perceptron',
-                pipeline_parameters = {
-                    "clf__n_iter": 25,
-                    "select__percentile": 16,
-                    "select__score_func": chi2,
-                    "tfidf__norm": u'l2',
-                    "tfidf__smooth_idf": True,
-                    "tfidf__sublinear_tf": True,
-                    "tfidf__use_idf": True,
-                    "vect__encoding": u'utf-8',
-                    "vect__lowercase": False,
-                    "vect__max_df": 0.75,
-                    "vect__min_df": 1,
-                    "vect__ngram_range": (1, 4),
-                    "vect__preprocessor": normalizer.normalize,
-                    "vect__stop_words": None
-                }
-            )
-        }
-    }
-}
-
-
 
 def get_model(base_model, create_if_not_saved=False):
+    from saved_models import saved_models
     model = None
     try:
-        model = saved_models[base_model.language][base_model.domain][base_model.source]
+        model = saved_models[base_model.language][base_model.domain][base_model.source][base_model.type]
     except KeyError:
         if create_if_not_saved:
-            model = Model(model_properties={'language':base_model.language, 'domain': base_model.domain, 'source': base_model.source})
+            model = Model(model_properties={'language':base_model.language, 'domain': base_model.domain, 'source': base_model.source, 'type': base_model.type})
     return model
 
 

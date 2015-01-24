@@ -8,9 +8,9 @@ import models
 models_supported_languages = {}
 
 # specify models to use for predictions (classifications) tasks
-def use_model(language, domain, source):
+def use_model(language, domain, source, type):
     models_supported_languages[language] = True
-    model = models.get_model(models.BaseModel(language=language,domain=domain, source=source))
+    model = models.get_model(models.BaseModel(language=language,domain=domain, source=source, type=type))
     if not model.pipeline: model.load()
 
 # detect individual text language
@@ -122,14 +122,16 @@ if __name__ == "__main__":
         help="domain of the input")
     op.add_option("--source", action="store", type=str, dest="source",
         help="source of the input")
+    op.add_option("--type", action="store", type=str, dest="type",
+        help="type of the classification task")
     op.add_option("--input", action="store", type=str, dest="input",
         help="predict the class of this input")
     (opts, args) = op.parse_args()
 
-    if not opts.domain or not opts.source or not opts.input:
-        raise Exception("must specify --domain, --source and --input")
+    if not opts.domain or not opts.source or not opts.input or not opts.type:
+        raise Exception("must specify --domain --source --input --type ")
     print("loading model...")
-    use_model(opts.language,opts.domain,opts.source)
+    use_model(opts.language,opts.domain,opts.source,opts.type)
     print("predict for language:  {0:s}, domain: {1:s}, source: {2:s}".format(opts.language,opts.domain,opts.source))
     print ("input: {0:s}".format(opts.input))
     print ("class:")

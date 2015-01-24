@@ -1,1 +1,1 @@
-python tester.py --model_id en_bitcoin_twitter --stdout tester
+python tester.py --model_id en_residence_agent_map --stdout tester

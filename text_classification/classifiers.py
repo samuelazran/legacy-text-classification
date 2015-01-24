@@ -46,6 +46,6 @@ classifiers = {
 	},
 	"SGDClassifier": {
 		"classifier": SGDClassifier, 
-		"grid_parameters":{"alpha":[.0001], "loss": ['hinge', 'log', 'modified_huber', 'squared_hinge', 'perceptron','squared_loss', 'huber', 'epsilon_insensitive', 'squared_epsilon_insensitive'], "n_iter": [25,50,100], "penalty": ["l2", "l1","elasticnet"]}
+		"grid_parameters":{"alpha":[.0001], "n_iter": [25,50,100], "penalty": ["l2", "l1","elasticnet"]}
 	}
 }

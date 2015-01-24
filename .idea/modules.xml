@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/text-classification.iml" filepath="$PROJECT_DIR$/.idea/text-classification.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../text-classification-web-api/text_classification_web_api/.idea/text_classification_web_api.iml" filepath="$PROJECT_DIR$/../text-classification-web-api/text_classification_web_api/.idea/text_classification_web_api.iml" />
     </modules>
   </component>
 </project>

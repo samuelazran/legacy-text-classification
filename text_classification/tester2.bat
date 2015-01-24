@@ -1,1 +1,1 @@
-python tester.py --model_id en_bitcoin_twitter --stdout test2 --fullgrid --start 3 --end 6
+python tester.py --model_id en_residence_agent_map --stdout test2 --fullgrid --start 3 --end 6

@@ -1,2 +1,2 @@
 #python learner.py --stdout learner__model__en_bitcoin_twitter --model_id en_bitcoin_twitter --action save --predict "bitcoin is going up and people are buying"
-python learner.py --stdout learner__model__en_bitcoin_twitter --model_id en_bitcoin_twitter --action save --predict "bitcoin is going up and people are buying"
+python learner.py --stdout learner__model__en_residence_agent_map --model_id en_residence_agent_map --action save --predict "parent_word__room word__rent parent_rel__dep"

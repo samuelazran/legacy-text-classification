@@ -68,13 +68,17 @@ def train(model):
     
     #print("vocabulary_:")
     #print(pipeline.steps[0][1].vocabulary_)
-    
-    print("top 100 keywords per class:")
+	
     for i, class_name in enumerate(classes_names):
-        top = np.argsort(classification_pipeline.steps[3][1].coef_[i])[-100:]
-        #print(top)
-        print("%s:\n %s" % (class_name, ", ".join(feature_names[top])))
-    print()
+        print i, class_name
+	
+    if hasattr(classification_pipeline.steps[3][1], "coef_"):
+		print("top 100 keywords per class:")
+		for i, class_name in enumerate(classes_names):
+			top = np.argsort(classification_pipeline.steps[3][1].coef_[i])[-100:]
+			#print(top)
+			print("%s:\n %s" % (class_name, ", ".join(feature_names[top])))
+		print()
 
     model.train_details.items_amount = len(rawdata)
     model.pipeline = classification_pipeline
@@ -118,7 +122,7 @@ if __name__ == "__main__":
         prediction = model.pipeline.predict([predict])
         print(prediction)
         print(model.pipeline.score([predict],prediction))
-        if hasattr(model.pipeline,'predict_proba'):
+        if False and hasattr(model.pipeline,'predict_proba'):
             print("proba:")
             try:
                 prediction = model.pipeline.predict_proba([predict])[0]
